@@ -1,0 +1,48 @@
+body
+{
+	background-color: #2F3336;
+	color: #efefef;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+}
+
+h1
+{
+	font-size: 36px;
+	font-weight: 400;
+	color: #C0D06F;
+	margin: 20px;
+}
+
+.authors
+{
+	text-align: center;
+}
+
+.authors img
+{
+	width: 100%;
+	height: auto;
+}
+
+.authors p
+{
+	margin-bottom: 30px;
+}
+
+.authors figcaption
+{
+	margin-top: 8px;
+}
+
+.navbar{
+	min-height: 57px;
+}
+tr{
+display: block;
+float: left;
+}
+th, td{
+min-width: 170px;
+min-height: 170px;
+}
