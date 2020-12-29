@@ -113,11 +113,11 @@ require('get_data.php');
 <p>Niestandardowa godzina zakończenia zajęć:
 <input type="checkbox" class="form-check-input" id="checkbox" name="custom_date" onclick="check()"></p><br>
 <td><input type="submit" name="submit" value="Zarezerwuj" class="btn btn-light"></td></br>
-</form>
 <?php
 require('input_reservation.php');
 $conn -> close();
 ?>
+</form>
 </div>
 </div>
 </main>

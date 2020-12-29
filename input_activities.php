@@ -17,6 +17,7 @@
 		}
 	}
 	echo '</br>';
+	
 	//delete
 	if(isset($_POST['delete'])){
 		if($_POST['delete']){

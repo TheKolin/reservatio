@@ -1,6 +1,8 @@
 <?php
 	session_start();
     require ('conn.php');
+	
+	//insert
 	if(isset($_POST['submit'])){
 		$profile = $conn -> real_escape_string($_POST['profile']);
 		$semester = $conn -> real_escape_string($_POST['semester']);
@@ -18,6 +20,27 @@
 		}
 	}
     
+	//delete 
+	if(isset($_POST['delete'])){
+		if($_POST['delete']){
+			$_SESSION['delete'] = $_POST['delete'];
+			echo '<div class="text-warning">
+				  Czy na pewno chcesz usunąć ten rekord?
+				  <form action="" method="POST">
+				  <button type="submit" name="del" value="1" class="btn btn-primary">Tak</button>
+				  <button type="submit" name="delete" value="" class="btn btn-secondary">Nie</button>
+				  </form>
+				  </div>
+				  ';
+		}
+	}
+	
+	if(isset($_POST['del'])){
+		//$conn -> query('DELETE FROM groups WHERE id_group = '.$_SESSION['delete']);
+		session_destroy();
+	}
+	
+	//list
     $sql_select = "SELECT * FROM groups";
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark">';
@@ -34,21 +57,5 @@
 	}else{
 		echo '<div class = "text-danger">Wystąpił błąd z pobraniem listy grup</div>';
 		exit();
-	}
-	
-	//delete przenieść razem 
-	if(isset($_POST['delete'])){
-		$_SESSION['delete'] = $_POST['delete'];
-		echo '<div class="text-warning">
-		Czy na pewno chcesz usunąć ten rekord?
-		<form action="" method="POST">
-		<button type="submit" name="del" value="1" class="btn btn-primary">Tak</button>
-		<button type="submit" name="delete" value="" class="btn btn-secondary">Nie</button>
-		</form>
-		</div>';
-	}
-	
-	if(isset($_POST['del'])){
-		echo $_SESSION['delete'];
 	}
 ?>

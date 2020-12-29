@@ -2,7 +2,7 @@
 	require('conn.php');
 	
 	//groups
-	$sql_group = "SELECT profile, semester FROM groups";
+	$sql_group = "SELECT profile, semester FROM groups GROUP BY profile, semester";
 	echo '<form action="" method = "GET" class="form form-control-sm">';
 	if($result = $conn -> query($sql_group)){
 		echo '<select name = "group" onchange="this.form.submit()" class="form-control">';
@@ -89,32 +89,36 @@
     $result = $result->get_result();
     
 	$last_day = FALSE;
+	$first_day = 0;
 	echo '<div id="tablemain">';
     echo '<table class="table table-dark offset-md-1">';
 
     while( $row = $result->fetch_assoc() ){
 		if($row['dayofweek']>0 && $last_day === FALSE){
 			for($i=0; $i<$row['dayofweek']; $i++){
-				echo "<tr class='col-sm-12 col-md-2'><th class='col'>{$dayofweek[$i]}</th></tr>";
+				echo '<tr class="col-sm-12 col-md-2"><th class="col">'.$dayofweek[$i].'</th></tr>';
 			}
 		}
         if( $last_day == FALSE || $last_day <> $row['dayofweek'] ){
-            echo ( $last_day ) ? '</tr><tr class="col-sm-12 col-md-2">' : '<tr class="col-sm-12 col-md-2">';
+            if($last_day){
+				echo '</tr><tr class="col-sm-12 col-md-2">';
+			}else{
+				echo '<tr class="col-sm-12 col-md-2">';
+			}
             $last_day = $row['dayofweek'];
             echo '<th class="col">'.$dayofweek[$last_day].'</th>';
+			$first_day = 1;
         }
-        echo "<td>
-            {$row['name']}<br>
-			{$row['type']}{$row['number']}<br>
-            {$row['first_name']} {$row['last_name']}<br>
-            Sala {$row['no_room']}<br>
-            od godz ".
-            date("H:i", strtotime($row['date'])).'-'.
-            date("H:i", strtotime($row['date_end']))
-            .'</td>';
+        echo '<td>'.
+             $row['name'].'<br>'.
+			 $row['type'].$row['number'].'<br>'.
+             $row['first_name'].' '.$row['last_name'].'<br>'.
+             'Sala '.$row['no_room'].'<br>'.
+             'od godz '.date("H:i", strtotime($row['date'])).'-'.date("H:i", strtotime($row['date_end'])).
+             '</td>';
     }
 	if($last_day < 5){
-		for($i=$last_day+1; $i<5; $i++){
+		for($i=$last_day+$first_day; $i<5; $i++){
 			echo "<tr class='col-sm-12 col-md-2'><th class='col'>{$dayofweek[$i]}</th></tr>";
 		}
 	}
