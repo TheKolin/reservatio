@@ -1,5 +1,7 @@
 <?php 
     require ('conn.php');
+	
+	//insert
 	if(isset($_POST['submit'])){
 		$no_room = $conn -> real_escape_string($_POST['no_room']);
 		$description = $conn -> real_escape_string($_POST['description']);
@@ -15,6 +17,10 @@
 		}
 	}
     
+	//delete
+	
+	
+	//list
     $sql_select = "SELECT * FROM room";
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark">';

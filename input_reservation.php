@@ -1,7 +1,6 @@
 <?php
-	session_start();
+	//insert
 	if(isset($_POST['submit'])){
-		// zmienne
 		$teacher = $_POST['teacher'];
 		$room = $_POST['room'];
 		$activities = $_POST['activities'];
@@ -17,7 +16,6 @@
             $date_end = date("Y-m-d H:i:s", strtotime("+1 hour +30 minutes", strtotime($date_start)));
         }
 		
-		//mechanika
 		//room
 		$sql_check = "SELECT * FROM reservation WHERE id_room = '$room' AND (date >= '$date_start' AND date <= '$date_end' OR date_end >= '$date_start' AND date_end <= '$date_end')";
 		if($result = $conn -> query($sql_check)){
@@ -63,44 +61,23 @@
 	}
     
 	//delete
-	if(isset($_POST['delete'])){
-		if($_POST['delete']){
-			echo $_POST['delete'];
-			$_SESSION['delete'] = $_POST['delete'];
-			echo $_SESSION['delete'];
-			echo '<div class="text-warning">
-				  Czy na pewno chcesz usunąć ten rekord?
-				  <form action="" method="POST">
-				  <button type="submit" name="del" value="1" class="btn btn-primary">Tak</button>
-				  <button type="submit" name="delete" value="" class="btn btn-secondary">Nie</button>
-				  </form>
-				  </div>
-				  ';
-		}
-	}
 	
-	if(isset($_POST['del'])){
-		echo 'hej';
-		//$conn -> query('DELETE FROM reservation WHERE id_reservation = '.$_SESSION['delete']);
-	}
-	//zapytania
+	
+	//list
     $sql_select = "SELECT reservation.id_reservation, teacher.first_name, teacher.last_name, activities.name, room.no_room, reservation.date, reservation.date_end, groups.profile, groups.semester, groups.type, groups.number FROM reservation JOIN room ON room.id_room = reservation.id_room JOIN teacher ON reservation.id_teacher = teacher.id_teacher JOIN activities ON reservation.id_activities = activities.id_activities JOIN groups ON groups.id_group = reservation.id_group GROUP BY teacher.first_name, teacher.last_name, activities.name, room.no_room, groups.profile, groups.semester, groups.type, groups.number";
-	
-	//mechanika
 	$dayofweek = array('Poniedziałki', 'Wtorki', 'Środy', 'Czwartki', 'Piątki');
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark col-sm-12">';
-		echo '<tr class="col"><th class="">Imię</th><th class="">Nazwisko</th><th class="">Przedmiot</th><th class="">Sala</th><th class="">Grupa</th><th colspan="2" class="">Data</th><th></th><th></th></tr>';
+		echo '<tr class="col"><th class="">Imię</th><th class="">Nazwisko</th><th class="">Przedmiot</th><th class="">Sala</th><th class="">Grupa</th><th class="">Data</th><th>Akcja</th></tr>';
         while($row = $result -> fetch_assoc()){
     		echo '<tr class="">
-				  <td >'.$row['id_reservation'].'</td>
 				  <td >'.$row['first_name'].'</td>
 				  <td >'.$row['last_name'].'</td>
-				  <td >'.$row['name'].'</td><td>'.$row['no_room'].'</td>
+				  <td >'.$row['name'].'</td>
+				  <td >'.$row['no_room'].'</td>
 				  <td >'.$row['profile'].'/'.$row['semester'].' '.$row['type'].$row['number'].'</td>
-				  <td >'.$dayofweek[date("N", strtotime($row['date']))-1].'</td>
-				  <td >'.date("H:i", strtotime($row['date'])).' - '.date("H:i", strtotime($row['date_end'])).'</td>
-				  <td><button class="btn btn-danger" type="submit" name="delete" value="'.$row['last_name'].'">Usuń</button><td>
+				  <td >'.$dayofweek[date("N", strtotime($row['date']))-1].'<br>'.date("H:i", strtotime($row['date'])).' - '.date("H:i", strtotime($row['date_end'])).'</td>
+				  <td ><button class="btn btn-danger" type="submit" name="delete" value="'.$row['last_name'].'">Usuń</button></td>
 				  </tr>';
 		}
         echo '</table>';

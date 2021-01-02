@@ -1,5 +1,4 @@
 <?php 
-	session_start();
     require ('conn.php');
 	
 	//insert
@@ -19,23 +18,7 @@
 	echo '</br>';
 	
 	//delete
-	if(isset($_POST['delete'])){
-		if($_POST['delete']){
-			$_SESSION['delete'] = $_POST['delete'];
-			echo '<div class="text-warning">
-				  Czy na pewno chcesz usunąć ten rekord?
-				  <form action="" method="POST">
-				  <button type="submit" name="del" value="1" class="btn btn-primary">Tak</button>
-				  <button type="submit" name="delete" value="" class="btn btn-secondary">Nie</button>
-				  </form>
-				  </div>
-				  ';
-		}
-	}
 	
-	if(isset($_POST['del'])){
-		$conn -> query('DELETE FROM activities WHERE id_activities = '.$_SESSION['delete']);
-	}
     
 	//list
     $sql_select = "SELECT * FROM activities";

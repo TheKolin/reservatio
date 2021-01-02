@@ -15,6 +15,10 @@
 		}
 	}
     
+	//delete
+	
+	
+	//list
     $sql_select = "SELECT * FROM teacher";
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark">';
