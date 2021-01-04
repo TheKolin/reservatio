@@ -18,7 +18,14 @@
 	echo '</br>';
 	
 	//delete
-	
+	if(isset($_POST['delete'])){
+		$id_delete = $_POST['delete'];
+		if($conn -> query("DELETE FROM activities WHERE id_activities='$id_delete'")){
+			echo '<div class="text-success">Rekord został usunięty</div>';
+		}else{
+			echo '<div class="text-danger">Wystąpił błąd</div>';
+		}
+	}
     
 	//list
     $sql_select = "SELECT * FROM activities";
@@ -30,7 +37,7 @@
 				  <td class="col">'.$row['id_activities'].'</td>
 				  <td class="col">'.$row['name'].'</td>
 				  <td class="col">
-				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+				  <button name="id_delete" value="'.$row['id_activities'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
   Usuń
 </button>
 <button type="button" class="btn btn-success">Edytuj</button></td>

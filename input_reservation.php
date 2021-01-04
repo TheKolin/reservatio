@@ -61,7 +61,14 @@
 	}
     
 	//delete
-	
+	if(isset($_POST['delete'])){
+		$id_delete = $_POST['delete'];
+		if($conn -> query("DELETE FROM reservation WHERE id_reservation='$id_delete'")){
+			echo '<div class="text-success">Rekord został usunięty</div>';
+		}else{
+			echo '<div class="text-danger">Wystąpił błąd</div>';
+		}
+	}
 	
 	//list
     $sql_select = "SELECT reservation.id_reservation, teacher.first_name, teacher.last_name, activities.name, room.no_room, reservation.date, reservation.date_end, groups.profile, groups.semester, groups.type, groups.number FROM reservation JOIN room ON room.id_room = reservation.id_room JOIN teacher ON reservation.id_teacher = teacher.id_teacher JOIN activities ON reservation.id_activities = activities.id_activities JOIN groups ON groups.id_group = reservation.id_group GROUP BY teacher.first_name, teacher.last_name, activities.name, room.no_room, groups.profile, groups.semester, groups.type, groups.number";
@@ -78,7 +85,7 @@
 				  <td >'.$row['profile'].'/'.$row['semester'].' '.$row['type'].$row['number'].'</td>
 				  <td >'.$dayofweek[date("N", strtotime($row['date']))-1].'<br>'.date("H:i", strtotime($row['date'])).' - '.date("H:i", strtotime($row['date_end'])).'</td>
 				  <td class="col">
-				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+				  <button name="id_delete" value="'.$row['id_reservation'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
   Usuń
 </button>
 <button type="button" class="btn btn-success">Edytuj</button></td>

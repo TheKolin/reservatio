@@ -16,7 +16,14 @@
 	}
     
 	//delete
-	
+	if(isset($_POST['delete'])){
+		$id_delete = $_POST['delete'];
+		if($conn -> query("DELETE FROM teacher WHERE id_teacher='$id_delete'")){
+			echo '<div class="text-success">Rekord został usunięty</div>';
+		}else{
+			echo '<div class="text-danger">Wystąpił błąd</div>';
+		}
+	}
 	
 	//list
     $sql_select = "SELECT * FROM teacher";
@@ -28,7 +35,7 @@
             echo '<td class="col" >'.$row['first_name'].'</td>';
 			echo '<td class="col">'.$row['last_name'].'</td>';
 			echo '<td class="col">
-			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+			<button name="id_delete" value="'.$row['id_teacher'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
 Usuń
 </button> <button type="button" class="btn btn-success">Edytuj</button></td>';
             echo '</tr>';
