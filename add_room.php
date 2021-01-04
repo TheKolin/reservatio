@@ -81,6 +81,33 @@
 </nav>
 <main>
 <div class="container">
+<div class="container">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="exampleModalLabel">Usuń</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <b class="text-dark"> Czy na pewno chcesz usunąć?</b>
+      </div>
+      <div class="modal-footer">
+	  <form action="" >
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary" type="submit">Usuń</button>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
     <p class="h2">Dodaj salę</p>
     <form action="add_room.php" method="POST">
     <?php

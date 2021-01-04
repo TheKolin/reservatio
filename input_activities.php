@@ -30,8 +30,12 @@
 				  <td class="col">'.$row['id_activities'].'</td>
 				  <td class="col">'.$row['name'].'</td>
 				  <td class="col">
-				  <button class="btn btn-danger" type="submit" name="delete" value="'.$row['id_activities'].'">Usuń</button>
-				  </tr>';
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+  Usuń
+</button>
+<button type="button" class="btn btn-success">Edytuj</button></td>
+
+</tr>';
 		}
         echo '</table>';
 	}else{

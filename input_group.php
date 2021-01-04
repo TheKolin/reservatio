@@ -32,7 +32,11 @@
 				  <td class="col">'.$row['profile'].'</td>
 				  <td class="col">'.$row['semester'].'</td>
 				  <td class="col">'.$row['type'].$row['number'].'</td>
-				  <td class="col"><button type="submit" name="delete" class="btn btn-danger" value="'.$row['id_group'].'">Usuń</button>
+				  <td class="col">
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+  Usuń
+</button>
+<button type="button" class="btn btn-success">Edytuj</button></td>
 				  </tr>';
 		}
         echo '</table>';

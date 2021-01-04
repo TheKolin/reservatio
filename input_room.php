@@ -24,11 +24,16 @@
     $sql_select = "SELECT * FROM room";
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark">';
-        echo '<tr class="row"><th class="col">Numer sali</th><th class="col">Opis</th></tr>';
+        echo '<tr class="row"><th class="col">Numer sali</th><th class="col">Opis</th><th class="col">Akcja</th></tr>';
     	while($row = $result -> fetch_assoc()){
 			echo '<tr class="row">';
             echo '<td class="col">'.$row['no_room'].'</td>';
-            echo '<td class="col">'.$row['description'].'</td>';
+			echo '<td class="col">'.$row['description'].'</td>';
+			echo '<td class="col">
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+Usuń
+</button>
+<button type="button" class="btn btn-success">Edytuj</button></td>';
             echo '</tr>';
 		}
         echo '</table>';
