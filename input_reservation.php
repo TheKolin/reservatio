@@ -85,10 +85,7 @@
 				  <td >'.$row['profile'].'/'.$row['semester'].' '.$row['type'].$row['number'].'</td>
 				  <td >'.$dayofweek[date("N", strtotime($row['date']))-1].'<br>'.date("H:i", strtotime($row['date'])).' - '.date("H:i", strtotime($row['date_end'])).'</td>
 				  <td class="col">
-				  <button name="id_delete" value="'.$row['id_reservation'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-  Usuń
-</button>
-<button type="button" class="btn btn-success">Edytuj</button></td>
+				  <button type="button" class="btn btn-success">Więcej</button></td>
 				  </tr>';
 		}
         echo '</table>';

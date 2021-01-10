@@ -26,6 +26,17 @@
 			echo '<div class="text-danger">Wystąpił błąd</div>';
 		}
 	}
+	
+	//edit
+	if(isset($_POST['edit'])){
+		$id_edit = $_POST['edit'];
+		$name = $_POST['new_name'];
+		if($conn -> query("UPDATE activities SET name = '$name' WHERE id_activities='$id_edit'")){
+			echo '<div class="text-success">Rekord został zmieniony</div>';
+		}else{
+			echo '<div class="text-danger">Wystąpił błąd</div>';
+		}
+	}
     
 	//list
     $sql_select = "SELECT * FROM activities";
@@ -34,11 +45,10 @@
               <tr class="row"><th class="col">Numer przemiotu</th><th class="col">Nazwa przemiotu</th><th class="col">Akcja</th></tr>';
 		while($row = $result -> fetch_assoc()){
 			echo '<tr class="row">
-				  <td class="col">'.$row['id_activities'].'</td>
 				  <td class="col">'.$row['name'].'</td>
 				  <td class="col">
 				  <button name="id_delete" value="'.$row['id_activities'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Usuń</button>
-				  <button type="button" class="btn btn-success">Edytuj</button></td>
+				  <button id="edit_btn" type="button" value="'.$row['id_activities'].'" class="btn btn-success">Edytuj</button></td>
 				  </tr>';
 		}
         echo '</table>';
