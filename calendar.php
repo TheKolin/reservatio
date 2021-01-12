@@ -99,7 +99,7 @@
 				echo '<tr class="col-sm-12 col-md-2"><th class="col">'.$dayofweek[$i].'</th></tr>';
 			}
 		}
-        if( $last_day == FALSE || $last_day <> $row['dayofweek'] ){
+        if( $last_day === FALSE || $last_day <> $row['dayofweek'] ){
             if($last_day){
 				echo '</tr><tr class="col-sm-12 col-md-2">';
 			}else{
