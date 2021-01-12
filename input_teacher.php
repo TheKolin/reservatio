@@ -41,11 +41,11 @@
     $sql_select = "SELECT * FROM teacher ORDER BY last_name, first_name";
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark">';
-        echo '<tr class="row"><th class="col">Nazwisko</th><th class="col">Imię</th><th class="col">Akcja</th></tr>';
+        echo '<tr class="row"><th class="col">Imię</th><th class="col">Nazwisko</th><th class="col">Akcja</th></tr>';
         while($row = $result -> fetch_assoc()){
 			echo '<tr class="row">
-				  <td class="col">'.$row['last_name'].'</td>
 				  <td class="col">'.$row['first_name'].'</td>
+				  <td class="col">'.$row['last_name'].'</td>
 				  <td class="col">
 				  <button name="id_delete" value="'.$row['id_teacher'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Usuń</button>
 				  <button id="edit_btn" type="button" value="'.$row['id_teacher'].'" class="btn btn-success">Edytuj</button></td>

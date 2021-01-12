@@ -42,7 +42,7 @@
     $sql_select = "SELECT * FROM activities";
     if($result = $conn -> query($sql_select)){
         echo '<table class="table table-dark">
-              <tr class="row"><th class="col">Numer przemiotu</th><th class="col">Nazwa przemiotu</th><th class="col">Akcja</th></tr>';
+              <tr class="row"><th class="col">Nazwa przemiotu</th><th class="col">Akcja</th></tr>';
 		while($row = $result -> fetch_assoc()){
 			echo '<tr class="row">
 				  <td class="col">'.$row['name'].'</td>

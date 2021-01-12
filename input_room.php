@@ -49,8 +49,8 @@
 				  <td class="col">'.$row['no_room'].'</td>
 				  <td class="col">'.$row['description'].'</td>
 				  <td class="col">
-				  <button name="id_delete" value="'.$row['id_room'].'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Usuń</button>
-				  <button id="edit_btn" type="button" value="'.$row['id_room'].'" class="btn btn-success">Edytuj</button></td>;
+				  <button name="id_delete" value="'.$row['id_room'].'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Usuń</button>
+				  <button id="edit_btn" type="button" value="'.$row['id_room'].'" class="btn btn-success">Edytuj</button></td>
 				  </tr>';
 		}
         echo '</table>';

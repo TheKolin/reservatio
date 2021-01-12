@@ -75,17 +75,19 @@
 							<option value = "1">Co tydzień</option>
 							<option value = "2">Co dwa tygodnie</option>
 						</select>
-						<input type="date" name="date" class="form-control"></td>
-						<input type="time" name="time_start" class="form-control"></td>
+						<input type="date" name="date" class="form-control">
+						<input type="time" name="time_start" class="form-control">
 						<div class="hidden"></div>
-						<p>Niestandardowa godzina zakończenia zajęć:
-						<input type="checkbox" class="form-check-input" id="checkbox" name="custom_date"></p><br>
-						<input type="submit" name="submit" value="Zarezerwuj" class="btn btn-light"></td></br>
-						<?php
-							require('input_reservation.php');
-							$conn -> close();
-						?>
+						<p>
+							Niestandardowa godzina zakończenia zajęć:
+							<input type="checkbox" class="form-check-input" id="checkbox" name="custom_date">
+						</p>
+						<input type="submit" name="submit" value="Zarezerwuj" class="btn btn-light"><br><br>
 					</form>
+					<?php
+						require('input_reservation.php');
+						$conn -> close();
+					?>
 				</div>
 			</div>
 			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
