@@ -95,6 +95,37 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var table = $('table');
+			var currentRow;
+			var buff;
+			var max = 0;
+			var array = [];
+			var day = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
+			for(var i=0; i<5; i++){
+				currentRow = table.find('tr').eq(i);
+				if(currentRow.find('th').html() != day[i]){
+					currentRow = table.find('tr').eq(i-1);
+					currentRow.after('<tr class="col-sm-12 col-md-2"><th class="col">' + day[i] + '</th></tr>')
+				}
+				
+			}
+			for(var i=0; i<5; i++){
+				currentRow = table.find('tr').eq(i);
+				buff = currentRow.find('td').length;
+				array[i] = buff;
+				if(buff > max){
+					max = buff
+				}
+			}
+			for(var i=0; i<5; i++){
+				for(var j=0; j<max-array[i]; j++){
+					currentRow = table.find('tr').eq(i).append('<td></td>');
+				}
+			}
+		});
+	</script>
 	
 </body>
 </html>
